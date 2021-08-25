@@ -14,37 +14,46 @@
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
     <td>{{product?.manufacturer?.name || ''}}</td>
+    <td>
+      <a [routerLink]="['/update/',product.id]">Update</a>
+    </td>
+    <td>
+      <a [routerLink]="['/delete/',product.id]">Delete</a>
+    </td>
 
   </tr>
 </table>
-<p>------------------------------------------</p>
-<h1>Tạo sản phẩm mới</h1>
-<form [formGroup]="productsForm" (ngSubmit) =create()>
-  <table>
-    <tr>
-      <td>Tên sản phẩm:</td>
-      <td><input type="text" formControlName="name"></td>
-    </tr>
-    <tr>
-      <td>Giá sản phẩm</td>
-      <td><input type="number" formControlName="price"></td>
-    </tr>
-    <tr>
-      <td>Mô tả về sản phẩm</td>
-      <td><input type="text" formControlName="description"></td>
-    </tr>
-    <tr>
-      <td>Nhà Sản Xuất</td>
-      <td>
-        <select formControlName="manufacturer">
-          <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.id">{{manufacturer.name}}</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><button>Tạo mới</button></td>
-    </tr>
-  </table>
-</form>
+
+<a [routerLink]="['/create/']">Create</a>
+
+<!--<p>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</p>-->
+<!--<h1>Tạo sản phẩm mới</h1>-->
+<!--<form [formGroup]="productsForm" (ngSubmit) =create()>-->
+<!--  <table>-->
+<!--    <tr>-->
+<!--      <td>Tên sản phẩm:</td>-->
+<!--      <td><input type="text" formControlName="name"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Giá sản phẩm</td>-->
+<!--      <td><input type="number" formControlName="price"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Mô tả về sản phẩm</td>-->
+<!--      <td><input type="text" formControlName="description"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Nhà Sản Xuất</td>-->
+<!--      <td>-->
+<!--        <select formControlName="manufacturer">-->
+<!--          <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.id" >{{manufacturer.name}}</option>-->
+<!--        </select>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td></td>-->
+<!--      <td><button>Tạo mới</button></td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--</form>-->
 

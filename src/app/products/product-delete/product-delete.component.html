@@ -1,0 +1,42 @@
+<p>product-delete works!</p>
+<form [formGroup]="productsForm" (ngSubmit)="deleteProduct(id)" >
+  <table>
+    <tr>
+      <td>Name</td>
+      <td>
+        <input type="text" formControlName="name">
+      </td>
+    </tr><tr>
+      <td>Price</td>
+      <td>
+        <input type="number" formControlName="price">
+      </td>
+    </tr><tr>
+      <td>Description</td>
+      <td>
+        <input type="text" formControlName="description">
+      </td>
+    </tr>
+    <tr>
+      <td>Nhà Sản Xuất</td>
+      <td>
+        <select formControlName="manufacturer">
+          <option *ngFor="let manufacturer of manufacturers" value="{{manufacturer.id}}" [selected]="manuId == manufacturer.id">{{manufacturer.name}}</option>
+          <option ></option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button type="submit">Xóa</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a [routerLink]="['']">Thoát</a>
+      </td>
+    </tr>
+
+  </table>
+</form>

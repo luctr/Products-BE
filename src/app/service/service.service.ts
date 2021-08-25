@@ -15,7 +15,6 @@ export class ServiceService {
   }
 
   createProduct(product:Product):Observable<Product>{
-    console.log(product);
     return this.httpClient.post<Product>(this.API+'/products',product);
   }
 
@@ -31,8 +30,8 @@ export class ServiceService {
     return this.httpClient.put<Product>(this.API + "/products/" + id, product);
   }
 
-  deleteProduct(id: number): Observable<Product> {
-    return this.httpClient.post<Product>(this.API + "/products/delete",id);
+  deleteProduct(id: number): Observable<Product>{
+    return this.httpClient.delete<Product>(this.API + '/products/' + id);
   }
 
 }

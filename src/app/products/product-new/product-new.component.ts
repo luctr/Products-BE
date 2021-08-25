@@ -1,18 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {Product} from "../../model/product";
-import {ServiceService} from "../../service/service.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
 import {Manufacturer} from "../../model/manufacturer";
+import {Product} from "../../model/product";
+import {FormControl, FormGroup} from "@angular/forms";
+import {ServiceService} from "../../service/service.service";
 import {ManufacturerService} from "../../service/manufacturer.service";
-
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  selector: 'app-product-new',
+  templateUrl: './product-new.component.html',
+  styleUrls: ['./product-new.component.scss']
 })
-export class ProductComponent implements OnInit {
-
+export class ProductNewComponent implements OnInit {
   manufacturers: Manufacturer[] = [];
 
   products: Product[] = [];
@@ -38,34 +37,32 @@ export class ProductComponent implements OnInit {
   );
 
   constructor(private service: ServiceService,
-              private manufacturer: ManufacturerService) {
+              private manufacturer: ManufacturerService,
+              private router:Router) {
   }
 
   ngOnInit(): void {
-    this.getAll();
     this.getAllManufacture()
   }
-
   getAll() {
     this.service.getAll().subscribe((data: Product[]) => {
       this.products = data;
     })
   }
-
+  create(){
+    this.product.name = this.productsForm.value.name;
+    this.product.price = this.productsForm.value.price;
+    this.product.description = this.productsForm.value.description;
+    this.product.manufacturer.id = this.productsForm.value.manufacturer;
+    console.log(this.product)
+    this.service.createProduct(this.product).subscribe(data=>{
+      this.router.navigate([''])
+    })
+  }
   getAllManufacture() {
     this.manufacturer.getAll().subscribe((data: Product[]) => {
       this.manufacturers = data;
     })
   }
 
-  create() {
-     this.product.name = this.productsForm.value.name;
-     this.product.price = this.productsForm.value.price;
-     this.product.description = this.productsForm.value.description;
-     this.product.manufacturer.id = this.productsForm.value.manufacturer;
-     console.log(this.product.name)
-     this.service.createProduct(this.product).subscribe(data=>{
-      this.getAll()
-    })
-  }
 }
